@@ -45,6 +45,14 @@ def add(update, context):
 		except:
 			update.effective_message.reply_text(
 				"ERROR: The link does not seem to be a RSS feed or is not supported")
+def dele(update,context):
+	global FEED_URL
+	for d in context.args:
+		if d in FEED_URL:
+			if len(FEED_URL)>1:
+				FEED_URL.remove(d)
+			else:
+				update.effective_message.reply_text("cant go down to 0 current url %s"%(FEED_URL[0]))
 
 def echo(update, context):
         """Echo the user message."""
@@ -72,6 +80,7 @@ def dmain():
         # Get the dispatcher to register handlers
         dp = updater.dispatcher
         dp.add_handler(CommandHandler("add", add))
+	dp.add_handler(CommandHandler("delete", dele))
         dp.add_handler(MessageHandler(Filters.text, echo))
         # log all errors
 
