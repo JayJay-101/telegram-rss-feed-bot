@@ -1,0 +1,7 @@
+python-dateutil
+
+
+python-telegram-bot==12.7
+requests
+
+feedparser
